@@ -9,6 +9,8 @@ class Detector:
         self.modelPath = modelPath
         self.classesPath = classesPath
         self.net = cv2.dnn_DetectionModel(self.modelPath, self.configPath)
+        self.net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
+        self.net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
         self.net.setInputSize(320, 320)
         self.net.setInputScale (1.0/127.5)
         self.net.setInputMean((127.5, 127.5, 127.5))
