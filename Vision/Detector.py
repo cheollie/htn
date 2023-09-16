@@ -55,7 +55,7 @@ class Detector:
 
             time_duration = time.time() - self.object_timestamps[object_id]
             print(f"{classLabel} has been out for {time_duration:.2f} seconds")
-            
+
             cv2.imshow("Result", image)
             key = cv2.waitKey(1) & 0xFF
             if key == ord("q"):
