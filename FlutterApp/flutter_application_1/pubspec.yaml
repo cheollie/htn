@@ -1,4 +1,4 @@
-name: flutter_application_1
+name: htn2023syde
 description: A new Flutter project.
 
 # Prevent accidental publishing to pub.dev.
@@ -14,6 +14,9 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  firebase_core: ^2.15.1
+  firebase_messaging: ^14.6.7 
+  logger: ^2.0.2
 
 dev_dependencies:
   flutter_test:
