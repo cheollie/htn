@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
 import time
+import pyttsx3
+
 
 class Detector:
     def __init__(self, videoPath, configPath, modelPath, classesPath):
@@ -16,7 +18,9 @@ class Detector:
         self.net.setInputMean((127.5, 127.5, 127.5))
         self.net.setInputSwapRB (True)
         self.object_timestamps = {}
+        self.object_duration = {}
         self.readClasses()
+        self.engine = pyttsx3.init()
     def readClasses(self):
         with open(self.classesPath, 'r') as f: self.classesList = f.read().splitlines()
         self.classesList.insert(0, '__Background__')
@@ -26,6 +30,7 @@ class Detector:
         if (cap.isOpened()==False): 
             print("Error opening file...") 
             return
+        last_time = time.time()
         (success, image) = cap.read()
         while success:
             classLabelIDs, confidences, bboxs = self.net.detect (image, confThreshold = 0.4)
@@ -54,9 +59,18 @@ class Detector:
                     object_id = f"{classLabel}_{i}"
                     if object_id not in self.object_timestamps:
                         self.object_timestamps[object_id] = time.time()
+                        self.object_duration[object_id] = 0
+                    else:
+                        self.object_duration[object_id] = time.time() - self.object_timestamps[object_id]  
+                        if (int(self.object_duration[object_id]*10) % 100 == 0) and int(self.object_duration[object_id]) > 0:
+                            print(f"{object_id} has been in frame for {self.object_duration[object_id]} seconds") 
+                            self.engine.say(f"{object_id} has been in frame for {int(self.object_duration[object_id])} seconds")
+                            self.engine.runAndWait()
             #"""
-            time_duration = time.time() - self.object_timestamps[object_id]
-            print(f"{classLabel} has been out for {time_duration:.2f} seconds")
+            #if time.time() - last_time >= 10:
+            #    print(self.object_duration)
+            #    print(sorted([(k,v) for k,v in self.object_duration.items()],key = lambda x: x[1]))
+            #    last_time = time.time()
             #"""
             cv2.imshow("Result", image)
             key = cv2.waitKey(1) & 0xFF
@@ -64,3 +78,5 @@ class Detector:
                 break
             (success, image) = cap.read()
         cv2.destroyAllWindows()
+        print()
+        print(self.object_timestamps)
