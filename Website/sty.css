@@ -1,0 +1,78 @@
+/* Reset some default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Montserrat, -apple-system, system-ui, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Set a green and pastel theme */
+body {
+  background-color: #ffffff; /* Pastel Green */
+  color: #333;
+}
+
+header {
+  background-color: #094c30; /* Light Blue */
+  color: rgb(248, 255, 250);
+  text-align: center;
+  padding: 20px 0;
+}
+
+h1 {
+  font-size: 2rem;
+  padding: 20px;
+}
+
+main {
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: #d6ffdb; /* White */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.slider-container {
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.slider {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  font-size: 1.5rem;
+  margin-right: 10px;
+  /* color: #57b3e4; Light Blue */
+}
+
+.volume-slider,
+.duration-slider {
+  flex: 1;
+  width: 100%;
+}
+
+/* Style the sliders with a green color */
+.taipy-slider {
+  color: #333;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.css-s23up .MuiToggleButtonGroup-grouped:not(:first-of-type) {
+  margin-left: -1px;
+  border-left: 1px solid transparent;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  background-color: black;
+}
