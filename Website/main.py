@@ -39,8 +39,8 @@ html_page = Html("""
             <taipy:toggle lov="YES;NO">{value}</taipy:toggle>
             <p>Food</p>
            <taipy:toggle lov="YES;NO">{value}</taipy:toggle>
-           
         </div>
+        <taipy:button on_action="on_button_action">Calibrate</taipy:button>
     </main>
 </body>
 </html>
@@ -50,13 +50,9 @@ html_page = Html("""
 
 my_theme = {
   "palette": {
-    "background": {"default": "#556b2f"},
+    "background": {"default": "#a2debb"},
     "primary": {"main": "#8fbc8f"}
   }
-}
-
-:root{
-    "padding": "30px",
 }
 
 Gui(html_page).run(theme=my_theme)

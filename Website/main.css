@@ -18,6 +18,7 @@ header {
   color: rgb(248, 255, 250);
   text-align: center;
   padding: 20px 0;
+  border-radius: 1rem;
 }
 
 h1 {
@@ -25,7 +26,7 @@ h1 {
   padding: 20px;
 }
 
-main {
+ main {
   max-width: 600px;
   margin: 20px auto;
   background-color: #d6ffdb; /* White */
@@ -69,10 +70,16 @@ h2 {
   outline: none;
 }
 
-.css-s23up .MuiToggleButtonGroup-grouped:not(:first-of-type) {
+.MuiToggleButtonGroup-grouped {
   margin-left: -1px;
   border-left: 1px solid transparent;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-  background-color: black;
-}
+  border-radius: 4rem;
+  background-color: grey;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+} 
+
+.MuiToggleButtonGroup-grouped:hover {
+  background-color: lightgreen;
+} 
+
