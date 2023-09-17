@@ -2,6 +2,18 @@ import cv2
 import numpy as np
 import time
 import pyttsx3
+from threading import Thread
+
+
+class SpeechThread(Thread):
+    def __init__(self, engine: pyttsx3.Engine, text: str):
+        self.engine = engine
+        self.text = text
+        super(SpeechThread, self).__init__()
+
+    def run(self):
+        self.engine.say(self.text)
+        self.engine.runAndWait()
 
 
 class Detector:
@@ -64,8 +76,7 @@ class Detector:
                         self.object_duration[object_id] = time.time() - self.object_timestamps[object_id]  
                         if (int(self.object_duration[object_id]*10) % 100 == 0) and int(self.object_duration[object_id]) > 0:
                             print(f"{object_id} has been in frame for {self.object_duration[object_id]} seconds") 
-                            self.engine.say(f"{object_id} has been in frame for {int(self.object_duration[object_id])} seconds")
-                            self.engine.runAndWait()
+                            SpeechThread(self.engine, f"{object_id} has been in frame for {int(self.object_duration[object_id])} seconds").start()
             #"""
             #if time.time() - last_time >= 10:
             #    print(self.object_duration)
